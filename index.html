@@ -375,7 +375,23 @@
     </div>
 
     <script>
-        // --- STABLE ANIMATION ENGINE ---
+<script>
+    // --- DRAWERS FIX ---
+    function checkoutFromDrawer() {
+        if (cart.length > 0) {
+            toggleCart();
+            setTimeout(() => {
+                triggerExpressCheckout();
+            }, 300);
+        } else {
+            triggerExpressCheckout();
+        }
+    }
+
+    // --- STABLE ANIMATION ENGINE ---
+    gsap.registerPlugin(ScrollTrigger);
+
+        // --- STABLE ANIMATION ENGINE 
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener('DOMContentLoaded', () => {
