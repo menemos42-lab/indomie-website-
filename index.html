@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indomie Premium | Taste the Legend</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .glow-effect {
+            box-shadow: 0 20px 50px -15px rgba(239, 68, 68, 0.4);
+        }
+        .gsap-reveal { opacity: 1; }
+        @media (min-width: 768px) {
+            .gsap-reveal { opacity: 0; transform: translateY(30px); }
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fffbeb; }
+        ::-webkit-scrollbar-thumb { background: #ef4444; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-[#fffdf6] text-slate-900 font-sans overflow-x-hidden">
+
+    <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-xl border-b border-amber-100 z-40">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-tighter text-red-600 flex items-center gap-1 group">
+                INDOMIE<span class="text-amber-500 group-hover:translate-x-1 transition-transform">®</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 font-semibold text-sm tracking-wide uppercase text-slate-600">
+                <a href="#hero" class="hover:text-red-600 transition-colors">Home</a>
+                <a href="#flavors" class="hover:text-red-600 transition-colors">The Vault</a>
+                <a href="#upgrades" class="hover:text-red-600 transition-colors">Gourmet Upgrades</a>
+                <a href="#experience" class="hover:text-red-600 transition-colors">The Ritual</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCart()" class="relative p-2 text-slate-700 hover:text-red-600 transition cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center scale-0 transition-transform">0</span>
+                </button>
+                <button onclick="triggerExpressCheckout()" class="bg-red-600 text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-red-700 transition shadow-lg shadow-red-600/20 cursor-pointer">
+                    Order Express
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-24 px-6 max-w-7xl mx-auto relative">
+        <div class="grid md:grid-cols-2 gap-12 items-center w-full relative z-10">
+            <div class="space-y-6 hero-text-panel">
+                <div class="inline-flex items-center gap-2 bg-red-50 text-red-600 font-bold tracking-wider text-xs uppercase px-4 py-1.5 rounded-full border border-red-100">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> Global Masterpiece
+                </div>
+                <h1 class="text-4xl md:text-7xl font-black text-slate-900 leading-none tracking-tight">
+                    The Art of <br><span class="text-red-600 relative">Instant Cravings.</span>
+                </h1>
+                <p class="text-base md:text-lg text-slate-600 max-w-md font-normal leading-relaxed">
+                    For generations, crafting the perfect dynamic bite of savory aromatic spice and perfect noodle chew. This isn't just fast food; it's a culinary ritual.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#flavors" class="bg-slate-900 text-white px-6 md:px-8 py-3.5 md:py-4 rounded-full text-sm font-bold hover:bg-slate-800 transition-all shadow-xl">Explore The Menu</a>
+                    <a href="#upgrades" class="border border-slate-300 text-slate-700 px-6 md:px-8 py-3.5 md:py-4 rounded-full text-sm font-bold hover:bg-slate-50 transition">Upgrade Your Bowl</a>
+                </div>
+            </div>
+            
+            <div class="relative flex justify-center hero-image-panel">
+                <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-amber-400 rounded-full blur-[100px] opacity-20 -z-10 animate-pulse"></div>
+                <div class="relative transform transition-all duration-700 hover:scale-102">
+                    <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=800&q=80" alt="Indomie Masterpiece" class="rounded-[2rem] md:rounded-[2.5rem] shadow-2xl border-4 border-white glow-effect w-full max-w-sm md:max-w-md object-cover aspect-square">
+                    <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-3 md:p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-amber-50">
+                        <span class="text-2xl md:text-3xl">🍳</span>
+                        <div>
+                            <p class="text-[10px] text-slate-400 font-semibold">Perfect Cook Time</p>
+                            <p class="text-xs md:text-sm font-black text-slate-800">3 Minutes Exactly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="flavors" class="py-24 bg-white relative border-t border-amber-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+                <div>
+                    <p class="text-red-600 font-bold tracking-widest text-xs uppercase mb-2">Selected Lineup</p>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">The Culinary Vault</h2>
+                </div>
+                <p class="text-slate-500 max-w-md text-xs md:text-sm leading-relaxed">
+                    Click any premium signature dish below to unlock micro-ingredient parameters, nutritional structures, and spicy metric breakdowns.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 dynamic-grid">
+                <div class="gsap-reveal group bg-[#fffdf9] border border-amber-100/60 rounded-3xl p-5 hover:bg-white hover:border-red-200 transition-all duration-300 hover:shadow-2xl flex flex-col justify-between">
+                    <div onclick="openPopup('Mi Goreng Traditional', 'The international benchmark for stir-fry instant noodles. Packaged with authentic seasoned oil, sweet soy sauce, chili powder, and crisp fried shallots.', 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80', 'Heat Signature: 🌶️🌶️\nSodium: Complex Optimal\nIncludes: Fried Onions Pack')" class="cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl mb-5 bg-amber-50 h-56 relative">
+                            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Mi Goreng Classic" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black tracking-widest uppercase px-3 py-1 rounded-full">Bestseller</span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-black text-slate-900 mb-2 group-hover:text-red-600 transition-colors">Mi Goreng Classic</h3>
+                        <p class="text-slate-600 text-xs md:text-sm mb-6 line-clamp-2">The iconic dry-tossed masterpiece balanced with premium sweet-savory oils and signature fried shallots.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                        <span class="text-lg md:text-xl font-black text-slate-900">$2.50<span class="text-xs text-slate-400 font-normal"> / pack</span></span>
+                        <button onclick="addToCart('Mi Goreng Classic', 2.50)" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl hover:bg-red-600 transition transform active:scale-95 cursor-pointer">Add To Combo</button>
+                    </div>
+                </div>
+
+                <div class="gsap-reveal group bg-[#fffdf9] border border-amber-100/60 rounded-3xl p-5 hover:bg-white hover:border-red-200 transition-all duration-300 hover:shadow-2xl flex flex-col justify-between">
+                    <div onclick="openPopup('Spicy Habanero Chicken', 'A heavy-hitting heat profile designed for intense spice lovers. Infused with aromatic local chicken reductions and extreme pepper oils.', 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=800&q=80', 'Heat Signature: 🌶️🌶️🌶️🌶️🌶️\nSodium: Controlled Premium\nIncludes: Pure Fire Extract')" class="cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl mb-5 bg-amber-50 h-56 relative">
+                            <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=600&q=80" alt="Spicy Hot Chicken" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <span class="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-black tracking-widest uppercase px-3 py-1 rounded-full">High Heat</span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-black text-slate-900 mb-2 group-hover:text-red-600 transition-colors">Spicy Hot Chicken</h3>
+                        <p class="text-slate-600 text-xs md:text-sm mb-6 line-clamp-2">A fierce, bold infusion of pure chili essence layered over rich, roasted savory chicken stock.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                        <span class="text-lg md:text-xl font-black text-slate-900">$2.75<span class="text-xs text-slate-400 font-normal"> / pack</span></span>
+                        <button onclick="addToCart('Spicy Hot Chicken', 2.75)" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl hover:bg-red-600 transition transform active:scale-95 cursor-pointer">Add To Combo</button>
+                    </div>
+                </div>
+
+                <div class="gsap-reveal group bg-[#fffdf9] border border-amber-100/60 rounded-3xl p-5 hover:bg-white hover:border-red-200 transition-all duration-300 hover:shadow-2xl flex flex-col justify-between">
+                    <div onclick="openPopup('Soto Lime Infusion', 'An aromatic broth experience native to traditional herb houses. Combines lemon grass, kaffir lime leaf, and deep white pepper broth layers.', 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80', 'Heat Signature: 🌶️\nSodium: Low Balanced\nIncludes: Citrus Infused Zest Pack')" class="cursor-pointer">
+                        <div class="overflow-hidden rounded-2xl mb-5 bg-amber-50 h-56 relative">
+                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Zesty Soto Lime" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <span class="absolute top-3 right-3 bg-emerald-600 text-white text-[10px] font-black tracking-widest uppercase px-3 py-1 rounded-full">Fresh Zest</span>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-black text-slate-900 mb-2 group-hover:text-red-600 transition-colors">Zesty Soto Lime</h3>
+                        <p class="text-slate-600 text-xs md:text-sm mb-6 line-clamp-2">Refreshing, bright citrus zest profile built expertly inside a deeply soothing aromatic stock.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                        <span class="text-lg md:text-xl font-black text-slate-900">$2.60<span class="text-xs text-slate-400 font-normal"> / pack</span></span>
+                        <button onclick="addToCart('Zesty Soto Lime', 2.60)" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl hover:bg-red-600 transition transform active:scale-95 cursor-pointer">Add To Combo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="upgrades" class="py-24 bg-amber-50/30 border-t border-b border-amber-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <p class="text-red-600 font-bold tracking-widest text-xs uppercase mb-2">Elevate Your Bowl</p>
+                <h2 class="text-3xl md:text-4xl font-black text-slate-900">Gourmet Inspirations</h2>
+                <p class="text-slate-500 text-xs md:text-sm mt-2">Take your instant baseline and transform it into a luxury five-star culinary showcase.</p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="gsap-reveal group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-lg aspect-[3/4]">
+                    <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?auto=format&fit=crop&w=500&q=80" alt="Crisp Sesame Scallions" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end">
+                        <h4 class="text-white font-black text-sm md:text-lg">Sesame & Greens</h4>
+                        <p class="text-amber-400 text-[10px] md:text-xs">Fresh scallions & toasted black seeds</p>
+                    </div>
+                </div>
+                <div class="gsap-reveal group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-lg aspect-[3/4]">
+                    <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=500&q=80" alt="Soft-Boiled Golden Egg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end">
+                        <h4 class="text-white font-black text-sm md:text-lg">The Golden Jammy</h4>
+                        <p class="text-amber-400 text-[10px] md:text-xs">6-Minute soft boiled marinated egg</p>
+                    </div>
+                </div>
+                <div class="gsap-reveal group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-lg aspect-[3/4]">
+                    <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=500&q=80" alt="Searing Hot Chili Oils" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end">
+                        <h4 class="text-white font-black text-sm md:text-lg">Artisanal Chili Crisp</h4>
+                        <p class="text-amber-400 text-[10px] md:text-xs">House-made garlic oil sizzle infusion</p>
+                    </div>
+                </div>
+                <div class="gsap-reveal group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-lg aspect-[3/4]">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=500&q=80" alt="Premium Beef Cuts" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end">
+                        <h4 class="text-white font-black text-sm md:text-lg">Seared Flank Shaved</h4>
+                        <p class="text-amber-400 text-[10px] md:text-xs">Pan-fried premium iron cuts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 bg-white relative">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <p class="text-red-600 font-bold tracking-widest text-xs uppercase mb-2">The Golden Rule</p>
+                <h2 class="text-3xl font-black text-slate-900">The 3-Minute Ritual</h2>
+            </div>
+
+            <div class="relative space-y-12 timeline-container">
+                <div class="absolute left-4 md:left-1/2 top-2 bottom-2 w-[2px] bg-amber-200 -translate-x-1/2 hidden md:block"></div>
+
+                <div class="gsap-reveal flex flex-col md:flex-row items-start md:items-center justify-between relative group">
+                    <div class="md:w-[45%] md:text-right order-2 md:order-1 mt-2 md:mt-0">
+                        <h4 class="text-lg md:text-xl font-black text-slate-900">1. The Rolling Boil</h4>
+                        <p class="text-xs md:text-sm text-slate-600 mt-1">Submerge blocks in exactly 400ml of roaring, high-pressure boiling water. Set the countdown for 3 minutes precisely.</p>
+                    </div>
+                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-red-600 border-4 border-white shadow-md absolute left-0 md:left-1/2 -translate-x-1/2 z-10 order-1"></div>
+                    <div class="md:w-[45%] order-3 hidden md:block"></div>
+                </div>
+
+                <div class="gsap-reveal flex flex-col md:flex-row items-start md:items-center justify-between relative group">
+                    <div class="md:w-[45%] order-1 hidden md:block"></div>
+                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-amber-500 border-4 border-white shadow-md absolute left-0 md:left-1/2 -translate-x-1/2 z-10 order-2"></div>
+                    <div class="md:w-[45%] order-3 mt-2 md:mt-0">
+                        <h4 class="text-lg md:text-xl font-black text-slate-900">2. Seasoning Canvas</h4>
+                        <p class="text-xs md:text-sm text-slate-600 mt-1">While cooking, arrange the structural oils, thick sweet soy, and spicy components directly onto your plate layout.</p>
+                    </div>
+                </div>
+
+                <div class="gsap-reveal flex flex-col md:flex-row items-start md:items-center justify-between relative group">
+                    <div class="md:w-[45%] md:text-right order-2 md:order-1 mt-2 md:mt-0">
+                        <h4 class="text-lg md:text-xl font-black text-slate-900">3. The Fusion Emulsion</h4>
+                        <p class="text-xs md:text-sm text-slate-600 mt-1">Drain water completely. Toss dry noodles aggressively into the seasoning canvas until every solitary strand possesses a brilliant amber gloss.</p>
+                    </div>
+                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-emerald-500 border-4 border-white shadow-md absolute left-0 md:left-1/2 -translate-x-1/2 z-10 order-1"></div>
+                    <div class="md:w-[45%] order-3 hidden md:block"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-white pt-16 pb-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 gap-4">
+            <p>© 2026 Indomie International Core Ecosystem. Crafted for maximum flavor.</p>
+        </div>
+    </footer>
+
+    <div id="productModal" class="fixed inset-0 bg-slate-950/40 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+        <div id="modalContainer" class="bg-white rounded-[2rem] max-w-2xl w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 relative flex flex-col md:flex-row border border-amber-100">
+            <button onclick="closePopup()" class="absolute top-3 right-3 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shadow-lg hover:bg-red-600 transition z-10 cursor-pointer">&times;</button>
+            <div class="md:w-1/2 h-52 md:h-auto relative">
+                <img id="modalImg" src="" alt="Flavors Window" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6 md:p-8 md:w-1/2 flex flex-col justify-between bg-gradient-to-b from-amber-50/20 to-white">
+                <div>
+                    <span class="text-[10px] text-red-600 font-extrabold tracking-widest uppercase">Secret Recipe Spec</span>
+                    <h3 id="modalTitle" class="text-2xl font-black text-slate-900 mt-1 mb-2"></h3>
+                    <p id="modalDesc" class="text-slate-600 text-xs leading-relaxed mb-4"></p>
+                    <div class="bg-amber-50/80 border border-amber-100 p-3 rounded-xl mb-4 text-xs text-amber-900 font-mono space-y-1" id="modalDetails"></div>
+                </div>
+                <button onclick="closePopup()" class="w-full bg-slate-900 text-white py-3 rounded-xl text-xs font-bold hover:bg-red-600 transition cursor-pointer">Return To Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="invoiceModal" class="fixed inset-0 bg-slate-950/50 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-md">
+        <div id="invoiceContainer" class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl transform scale-95 transition-transform duration-300 border border-amber-100">
+            <div class="text-center pb-4 border-b border-slate-100">
+                <span class="text-3xl">🚀</span>
+                <h3 class="text-xl font-black text-slate-900 mt-2">Express Delivery Invoice</h3>
+                <p class="text-xs text-slate-400">Indomie Hyper-Speed Pipeline</p>
+            </div>
+            
+            <div id="invoiceBillingContent" class="py-6 space-y-3 text-sm"></div>
+
+            <div class="space-y-2">
+                <button id="invoiceActionBtn" onclick="confirmExpressOrder()" class="w-full bg-red-600 text-white py-3 rounded-xl text-xs font-bold hover:bg-red-700 transition cursor-pointer shadow-lg shadow-red-600/20">Confirm & Dispatch</button>
+                <button onclick="closeInvoice()" class="w-full bg-slate-100 text-slate-600 py-3 rounded-xl text-xs font-bold hover:bg-slate-200 transition cursor-pointer">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-500 border-l border-amber-100 flex flex-col justify-between">
+        <div class="p-5 border-b border-amber-100 flex justify-between items-center">
+            <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">Your Flavor Box <span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-md" id="cart-drawer-count">0</span></h3>
+            <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-900 font-bold text-xl cursor-pointer">&times;</button>
+        </div>
+        
+        <div id="cart-items-container" class="p-5 overflow-y-auto flex-1 space-y-3">
+            <p id="empty-cart-text" class="text-slate-400 text-xs text-center py-12">Your combo builder is empty.</p>
+        </div>
+
+        <div class="p-5 bg-amber-50/50 border-t border-amber-100 space-y-3">
+            <div class="flex justify-between items-center font-bold text-sm">
+                <span class="text-slate-600">Est. Total:</span>
+                <span id="cart-total" class="text-xl font-black text-slate-900">$0.00</span>
+            </div>
+            <button onclick="checkoutFromDrawer()" class="w-full bg-red-600 text-white py-3 rounded-xl text-xs font-bold hover:bg-red-700 transition cursor-pointer shadow-md">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- MOBILE REVEAL BUG FIX ENGINE ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline();
+            tl.from('.hero-text-panel > *', { opacity: 0, y: 20, duration: 0.6, stagger: 0.1, ease: "power4.out" })
+              .from('.hero-image-panel', { opacity: 0, scale: 0.95, duration: 0.8, ease: "power2.out" }, "-=0.4");
+            
+            if (window.innerWidth >= 768) {
+                gsap.to('.gsap-reveal', {
+                    opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+                    scrollTrigger: { trigger: '.dynamic-grid', start: 'top 85%', toggleActions: 'play none none none' }
+                });
+            }
+        });
+
+        // --- INTERACTIVE MODAL BOX SYSTEM ---
+        const modal = document.getElementById('productModal');
+        const modalBox = document.getElementById('modalContainer');
+
+        function openPopup(title, desc, img, details) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalImg').src = img;
+            
+            const metrics = details.split('\n');
+            let structuredDetails = '';
+            metrics.forEach(m => {
+                structuredDetails += `<div class="flex justify-between border-b border-amber-100/40 pb-1 mb-1"><span>${m.split(':')[0]}:</span><span class="font-bold text-slate-900">${m.split(':')[1] || ''}</span></div>`;
+            });
+            document.getElementById('modalDetails').innerHTML = structuredDetails;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalBox.classList.remove('scale-95');
+            modalBox.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', (e) => { if(e.target === modal) closePopup(); });
+
+        // --- EXPRESS CHECKOUT SYSTEM ENGINE ---
+        const invoiceModal = document.getElementById('invoiceModal');
+        const invoiceContainer = document.getElementById('invoiceContainer');
+        const invoiceContent = document.getElementById('invoiceBillingContent');
+        const invoiceActionBtn = document.getElementById('invoiceActionBtn');
+
+        function triggerExpressCheckout() {
+            let totalItems = 0;
+            let subtotal = 0;
+            cart.forEach(item => {
+                totalItems += item.qty;
+                subtotal += (item.price * item.qty);
+            });
+
+            if (totalItems === 0) {
+                invoiceContent.innerHTML = `
+                    <p class="text-center text-slate-500 py-4 text-xs font-medium">
+                        Your cart is empty! Add some delicious packs to your combo before triggering express dispatch. 🍜
+                    </p>
+                `;
+                invoiceActionBtn.style.display = 'none';
+            } else {
+                const deliveryFee = 3.50;
+                const grandTotal = subtotal + deliveryFee;
+                invoiceActionBtn.style.display = 'block';
+                invoiceActionBtn.innerText = "Confirm & Dispatch";
+                
+                let itemsListHtml = '<div class="max-h-28 overflow-y-auto space-y-1 pr-1 border-b border-dashed border-slate-100 pb-2 mb-2">';
+                cart.forEach(item => {
+                    itemsListHtml += `<div class="flex justify-between text-xs text-slate-600"><span>${item.name} (x${item.qty})</span><span>$${(item.price * item.qty).toFixed(2)}</span></div>`;
+                });
+                itemsListHtml += '</div>';
+
+                invoiceContent.innerHTML = `
+                    ${itemsListHtml}
+                    <div class="flex justify-between text-slate-600 text-xs"><span>Subtotal:</span><span>$${subtotal.toFixed(2)}</span></div>
+                    <div class="flex justify-between text-slate-600 text-xs"><span>Express Delivery:</span><span class="text-emerald-600 font-bold">+$${deliveryFee.toFixed(2)}</span></div>
+                    <div class="flex justify-between font-black text-slate-900 border-t border-slate-100 pt-2 mt-1"><span>Grand Total:</span><span>$${grandTotal.toFixed(2)}</span></div>
+                `;
+            }
+
+            invoiceModal.classList.remove('opacity-0', 'pointer-events-none');
+            invoiceContainer.classList.remove('scale-95');
+            invoiceContainer.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function checkoutFromDrawer() {
+            if (cart.length === 0) {
+                triggerExpressCheckout();
+            } else {
+                toggleCart();
+                setTimeout(() => {
+                    triggerExpressCheckout();
+                }, 300);
+            }
+        }
+
+        function closeInvoice() {
+            invoiceModal.classList.add('opacity-0', 'pointer-events-none');
+            invoiceContainer.classList.remove('scale-100');
+            invoiceContainer.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+
+        function confirmExpressOrder() {
+            invoiceContent.innerHTML = `
+                <div class="text-center py-6 space-y-2 animate-bounce">
+                    <span class="text-4xl">🔥 🔥 🔥</span>
+                    <h4 class="font-black text-red-600 text-base">Order Dispatched!</h4>
+                    <p class="text-xs text-slate-500 px-4">Courier engine initialized. Water is boiling. Arrival estimated in precisely 180 seconds flat.</p>
+                </div>
+            `;
+            invoiceActionBtn.style.display = 'none';
+            
+            cart = [];
+            updateCartUI();
+        }
+
+        // --- DYNAMIC SHOPPING CART ENGINE ---
+        let cart = [];
+
+        function toggleCart() { document.getElementById('cartDrawer').classList.toggle('translate-x-full'); }
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) { existingItem.qty += 1; } else { cart.push({ name, price, qty: 1 }); }
+            updateCartUI();
+            gsap.to('#cart-count', { scale: 1.3, duration: 0.1, yoyo: true, repeat: 1 });
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const emptyText = document.getElementById('empty-cart-text');
+            const countBadge = document.getElementById('cart-count');
+            const drawerCount = document.getElementById('cart-drawer-count');
+            const totalLabel = document.getElementById('cart-total');
+
+            container.innerHTML = '';
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if(cart.length === 0) {
+                if(emptyText) container.appendChild(emptyText);
+                countBadge.classList.add('scale-0');
+            } else {
+                countBadge.classList.remove('scale-0');
+                countBadge.classList.add('scale-100');
+                
+                cart.forEach(item => {
+                    totalItems += item.qty;
+                    totalPrice += (item.price * item.qty);
+
+                    const element = document.createElement('div');
+                    element.className = "flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm";
+                    element.innerHTML = `
+                        <div>
+                            <p class="font-bold text-xs text-slate-900">${item.name}</p>
+                            <p class="text-[11px] text-slate-500">$${item.price.toFixed(2)} x ${item.qty}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('${item.name}', -1)" class="w-5 h-5 rounded bg-white border border-slate-200 text-xs font-bold hover:bg-red-50 hover:text-red-600 transition flex items-center justify-center cursor-pointer">-</button>
+                            <span class="text-xs font-bold text-slate-700 w-3 text-center">${item.qty}</span>
+                            <button onclick="changeQty('${item.name}', 1)" class="w-5 h-5 rounded bg-white border border-slate-200 text-xs font-bold hover:bg-slate-900 hover:text-white transition flex items-center justify-center cursor-pointer">+</button>
+                        </div>
+                    `;
+                    container.appendChild(element);
+                });
+            }
+
+            countBadge.innerText = totalItems;
+            drawerCount.innerText = totalItems;
+            totalLabel.innerText = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function changeQty(name, amount) {
+            const item = cart.find(i => i.name === name);
+            if(item) {
+                item.qty += amount;
+                if(item.qty <= 0) { cart = cart.filter(i => i.name !== name); }
+                updateCartUI();
+            }
+        }
+    </script>
+</body>
+</html>
